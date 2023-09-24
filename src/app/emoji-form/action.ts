@@ -1,6 +1,6 @@
 "use server"
 
-import { replicate } from "@/lib/replicate"
+import { replicate } from "@/server/replicate"
 import { nanoid } from "@/lib/utils"
 import { kv } from "@vercel/kv"
 import { redirect } from "next/navigation"

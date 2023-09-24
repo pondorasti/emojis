@@ -6,21 +6,24 @@ import { SubmitButton } from "./submit-button"
 // @ts-expect-error
 import { experimental_useFormState as useFormState } from "react-dom"
 
-export function EmojiForm() {
+interface EmojiFormProps {
+  initialPrompt?: string
+}
+
+export function EmojiForm({ initialPrompt }: EmojiFormProps) {
   const [formState, formAction] = useFormState(createEmoji)
   const submitRef = useRef<React.ElementRef<"button">>(null)
 
   useEffect(() => {
     if (!formState) return
+    // TODO: show toast
     console.log(formState.message)
   }, [formState])
 
   return (
-    <form
-      action={formAction}
-      className="bg-black rounded-full shadow-lg h-fit flex flex-row px-1.5 items-center my-6 max-w-md w-full"
-    >
+    <form action={formAction} className="bg-black rounded-xl shadow-lg h-fit flex flex-row px-1.5 items-center w-full">
       <input
+        defaultValue={initialPrompt}
         type="text"
         name="prompt"
         onKeyDown={(e) => {
