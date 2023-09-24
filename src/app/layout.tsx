@@ -4,8 +4,9 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import { Prisma } from "@prisma/client"
 import { prisma } from "@/server/db"
-import { EmojiCard } from "./emoji-card"
+import { EmojiCard } from "./_components/emoji-card"
 import { Suspense } from "react"
+import { Providers } from "./_components/providers"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <EmojiGrid />
           </Suspense>
         </main>
+        <Providers />
       </body>
     </html>
   )
