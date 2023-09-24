@@ -1,8 +1,8 @@
 "use server"
 
-import { replicate } from "@/server/replicate"
 import { nanoid } from "@/lib/utils"
-import { kv } from "@vercel/kv"
+import { prisma } from "@/server/db"
+import { replicate } from "@/server/replicate"
 import { redirect } from "next/navigation"
 
 interface FormState {
@@ -14,7 +14,8 @@ export async function createEmoji(prevFormState: FormState | undefined, formData
   if (!prompt) return { message: "Please enter a prompt" }
 
   const id = nanoid()
-  await Promise.all([kv.hset(id, { prompt }), replicate.createEmoji({ id, prompt })])
+  const data = { id, prompt }
+  await Promise.all([prisma.emoji.create({ data }), replicate.createEmoji(data)])
 
   redirect(`/p/${id}`)
 }

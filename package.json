@@ -3,17 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "postinstall": "prisma generate",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prisma:studio": "prisma studio",
+    "prisma:push": "prisma db push"
   },
   "dependencies": {
+    "@prisma/client": "^5.3.1",
     "@types/node": "20.6.4",
     "@types/react": "18.2.22",
     "@types/react-dom": "18.2.7",
     "@vercel/blob": "^0.12.5",
-    "@vercel/kv": "^0.2.3",
     "autoprefixer": "10.4.16",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
@@ -23,6 +26,7 @@
     "nanoid": "^5.0.1",
     "next": "13.5.2",
     "postcss": "8.4.30",
+    "prisma": "^5.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "replicate": "^0.18.0",
