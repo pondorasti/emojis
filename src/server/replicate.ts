@@ -20,7 +20,7 @@ export class ReplicateClient {
         prompt: `A TOK emoji of a ${prompt}`,
         width: EMOJI_SIZE,
         height: EMOJI_SIZE,
-        num_inference_steps: 50,
+        num_inference_steps: 30,
         // prompt_strength: 0.8,
         negative_prompt: "racist, xenophobic, antisemitic, islamophobic, bigoted",
       },
