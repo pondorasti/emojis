@@ -1,5 +1,8 @@
 "use server"
 
+import { replicate } from "@/lib/replicate"
+import { nanoid } from "@/lib/utils"
+import { kv } from "@vercel/kv"
 import { redirect } from "next/navigation"
 
 interface FormState {
@@ -7,11 +10,11 @@ interface FormState {
 }
 
 export async function createEmoji(prevFormState: FormState | undefined, formData: FormData): Promise<FormState | void> {
-  console.log({ prevFormState })
-  const prompt = formData.get("prompt")
+  const prompt = formData.get("prompt") as string | null
   if (!prompt) return { message: "Please enter a prompt" }
 
-  // 5s timeout
-  await new Promise((resolve) => setTimeout(resolve, 1000))
-  // redirect("/post")
+  const id = nanoid()
+  await Promise.all([kv.hset(id, { prompt }), replicate.createEmoji({ id, prompt })])
+
+  redirect(`/p/${id}`)
 }
