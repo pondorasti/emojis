@@ -1,6 +1,6 @@
 import { Response, webhookSchema } from "@/server/constants"
+import { prisma } from "@/server/db"
 import { put } from "@vercel/blob"
-import { kv } from "@vercel/kv"
 
 export async function POST(req: Request) {
   try {
@@ -17,10 +17,11 @@ export async function POST(req: Request) {
     // convert output to a blob object
     const file = await fetch(output).then((res) => res.blob())
 
-    // upload & store in Vercel Blob
-    const { url } = await put(`${id}.png`, file, { access: "public" })
+    // upload & store image
+    const { url } = await put(`${id}-no-background.png`, file, { access: "public" })
 
-    await kv.hset(id, { image: url })
+    // update emoji
+    await prisma.emoji.update({ where: { id }, data: { noBackgroundUrl: url } })
 
     return Response.ok()
   } catch (error) {

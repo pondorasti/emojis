@@ -1,5 +1,7 @@
 import { Response, webhookSchema } from "@/server/constants"
+import { prisma } from "@/server/db"
 import { replicate } from "@/server/replicate"
+import { put } from "@vercel/blob"
 
 export async function POST(req: Request) {
   try {
@@ -12,6 +14,15 @@ export async function POST(req: Request) {
     const body = await req.json()
     const { output } = body
     if (!output) return Response.badRequest("Missing output")
+
+    // convert output to a blob object
+    const file = await fetch(output[0]).then((res) => res.blob())
+
+    // upload & store image
+    const { url } = await put(`${id}-original.png`, file, { access: "public" })
+
+    // update emoji
+    await prisma.emoji.update({ where: { id }, data: { originalUrl: url } })
 
     await replicate.removeBackground({ id, image: output[0] })
 
