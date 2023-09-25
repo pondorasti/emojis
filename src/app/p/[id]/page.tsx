@@ -1,3 +1,4 @@
+import { EmojiCard } from "@/app/_components/emoji-card"
 import { EmojiForm } from "@/app/_components/emoji-form"
 import { EMOJI_SIZE } from "@/lib/constants"
 import { prisma } from "@/server/db"
@@ -48,18 +49,7 @@ export default async function Emoji({ params }: { params: { id: string } }) {
   return (
     <>
       <EmojiForm initialPrompt={data.prompt} />
-
-      <div className="border flex flex-row flex-nowrap py-1 px-3 items-center shadow-sm rounded-xl gap-2 bg-white">
-        <Image
-          alt="Emoji"
-          src={data.noBackgroundUrl ?? ""}
-          width={EMOJI_SIZE}
-          height={EMOJI_SIZE}
-          className="h-8 w-8 aspect-square"
-        />
-
-        <p className="font-mono text-sm">:{data.prompt}:</p>
-      </div>
+      <EmojiCard id={params.id} />
     </>
   )
 }

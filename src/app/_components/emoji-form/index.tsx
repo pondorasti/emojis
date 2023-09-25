@@ -21,13 +21,12 @@ export function EmojiForm({ initialPrompt }: EmojiFormProps) {
   }, [formState])
 
   return (
-    <form action={formAction} className="bg-black rounded-xl shadow-lg h-fit flex flex-row px-1.5 items-center w-full">
+    <form action={formAction} className="bg-black rounded-xl shadow-lg h-fit flex flex-row px-1 items-center w-full">
       <input
         defaultValue={initialPrompt}
         type="text"
         name="prompt"
         onKeyDown={(e) => {
-          // if (e.key === "Enter" && !e.shiftKey) e.preventDefault()
           if (e.key === "Enter") {
             e.preventDefault()
             submitRef.current?.click()
