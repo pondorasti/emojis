@@ -42,9 +42,7 @@ export default async function Emoji({ params }: { params: { id: string } }) {
     where: { id: params.id },
   })
 
-  if (!data) {
-    notFound()
-  }
+  if (!data) redirect("/")
 
   return (
     <>
