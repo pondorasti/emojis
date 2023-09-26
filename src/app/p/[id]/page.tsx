@@ -1,9 +1,7 @@
 import { EmojiCard } from "@/app/_components/emoji-card"
 import { EmojiForm } from "@/app/_components/emoji-form"
-import { EMOJI_SIZE } from "@/lib/constants"
 import { prisma } from "@/server/db"
-import Image from "next/image"
-import { notFound } from "next/navigation"
+import { redirect } from "next/navigation"
 
 // export async function generateMetadata({
 //   params,

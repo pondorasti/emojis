@@ -9,6 +9,7 @@ import { Suspense } from "react"
 import { Providers } from "./_components/providers"
 import Link from "next/link"
 import { Github } from "lucide-react"
+import { getEmojis } from "@/server/get-emojis"
 
 const BODY_PADDING = "px-4 sm:px-6"
 
@@ -82,11 +83,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 }
 
 async function EmojiGrid() {
-  const emojis = await prisma.emoji.findMany({
-    select: { id: true },
-    orderBy: { createdAt: Prisma.SortOrder.desc },
-    take: 1000,
-  })
+  const emojis = await getEmojis()
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 justify-items-stretch w-full">

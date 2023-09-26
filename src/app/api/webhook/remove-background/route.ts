@@ -12,6 +12,7 @@ export async function POST(req: Request) {
 
     // get output from Replicate
     const body = await req.json()
+    console.log(body)
     const { output } = body
     if (!output) return Response.badRequest("Missing output")
 
