@@ -9,6 +9,7 @@ import { EmojiCard } from "./_components/emoji-card"
 import { Providers } from "./_components/providers"
 import "./globals.css"
 import { DEFAULT_OG_IMAGE, PROD_URL } from "@/lib/constants"
+import { EmojiCount } from "./_components/emoji-count"
 
 const BODY_PADDING = "px-4 sm:px-6"
 
@@ -88,9 +89,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <h1 className="font-medium text-4xl text-black mb-3 animate-in fade-in slide-in-from-bottom-3 duration-1000 ease-in-out">
               AI Emojis
             </h1>
-            <p className="text-gray-500 mb-12 text-base animate-in fade-in slide-in-from-bottom-4 duration-1200 ease-in-out">
-              1 emoji generated and counting
-            </p>
+            <EmojiCount />
 
             <div className="max-w-md space-y-4 w-full animate-in fade-in slide-in-from-bottom-4 duration-1200 ease-in-out">
               {children}
