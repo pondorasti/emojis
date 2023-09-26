@@ -24,7 +24,8 @@ export async function POST(req: Request) {
     // update emoji
     await prisma.emoji.update({ where: { id }, data: { originalUrl: url } })
 
-    await replicate.removeBackground({ id, image: output[0] })
+    const res = await replicate.removeBackground({ id, image: output[0] })
+    console.log(res)
 
     return Response.ok()
   } catch (error) {
