@@ -1,23 +1,44 @@
 import { cn } from "@/lib/utils"
-import "./globals.css"
+import { getEmojis } from "@/server/get-emojis"
+import { Github } from "lucide-react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
-import { Prisma } from "@prisma/client"
-import { prisma } from "@/server/db"
-import { EmojiCard } from "./_components/emoji-card"
-import { Suspense } from "react"
-import { Providers } from "./_components/providers"
 import Link from "next/link"
-import { Github } from "lucide-react"
-import { getEmojis } from "@/server/get-emojis"
+import { Suspense } from "react"
+import { EmojiCard } from "./_components/emoji-card"
+import { Providers } from "./_components/providers"
+import "./globals.css"
+import { DEFAULT_OG_IMAGE, PROD_URL } from "@/lib/constants"
 
 const BODY_PADDING = "px-4 sm:px-6"
 
 const inter = Inter({ subsets: ["latin"] })
 
-export const metadata: Metadata = {
-  title: "AI Emoji Generator",
-  description: "Generate beautiful emojis in seconds",
+export function generateMetadata(): Metadata {
+  const title = "AI Emoji Generator"
+  const description = "Generate beautiful emojis in seconds"
+
+  return {
+    metadataBase: new URL(PROD_URL),
+    title,
+    description,
+    openGraph: {
+      images: [DEFAULT_OG_IMAGE],
+      title,
+      description,
+      url: PROD_URL,
+      siteName: "emojis.alexandru.so",
+      locale: "en_US",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      images: [DEFAULT_OG_IMAGE],
+      title,
+      description,
+      creator: "@pondorasti",
+    },
+  }
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -50,8 +71,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               />
             </svg>
             <span>emojis</span>
-
-            {/* <button className="text-sm">Star us on Github</button> */}
           </Link>
 
           <Link
@@ -60,11 +79,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             rel="noopener noreferrer"
             className="flex items-center justify-center"
           >
+            <span className="sr-only">Github Repository</span>
             <Github size={20} />
           </Link>
         </header>
         <main className={cn("min-h-screen flex items-stretch flex-col pb-28 max-w-5xl mx-auto", BODY_PADDING)}>
-          <div className="py-[20vh] flex flex-col items-center justify-center">
+          <div className="py-[15vh] sm:py-[20vh] flex flex-col items-center justify-center">
             <h1 className="font-medium text-4xl text-black mb-3">AI Emojis</h1>
             <p className="text-gray-500 mb-12 text-base">1 emoji generated and counting</p>
 

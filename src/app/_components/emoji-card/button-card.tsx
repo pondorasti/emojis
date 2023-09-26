@@ -5,10 +5,10 @@ import { Download } from "lucide-react"
 import Image from "next/image"
 import { useState } from "react"
 import toast from "react-hot-toast"
-import { set } from "zod"
 import { Loader } from "../loader"
 
 interface ButtonCard {
+  id: string
   name: string
   src: string
 }
@@ -22,7 +22,8 @@ function downloadBlob(blobUrl: string, filename: string) {
   a.remove()
 }
 
-export function ButtonCard({ name, src }: ButtonCard) {
+export function ButtonCard({ id, name, src }: ButtonCard) {
+  const [showImagePlaceholder, setShowImagePlaceholder] = useState(true)
   const [isDownloading, setIsDownloading] = useState(false)
 
   async function handleDownload() {
@@ -48,14 +49,26 @@ export function ButtonCard({ name, src }: ButtonCard) {
   }
 
   return (
-    <div className="borders ring-1 ring-gray-200 flex flex-row flex-nowrap py-1 px-2 items-center shadow-sm rounded-xl gap-1.5 bg-white w-full relative group">
+    <div
+      id={id}
+      className="borders ring-1 ring-gray-200 flex flex-row flex-nowrap py-1 px-1.5 items-center shadow-sm rounded-xl gap-1.5 bg-white w-full relative group"
+    >
       <Image
         alt="ai generated emoji"
         src={src}
         width={EMOJI_SIZE}
         height={EMOJI_SIZE}
         className="h-8 w-8 aspect-square"
+        onLoadingComplete={() => setShowImagePlaceholder(false)}
       />
+      {showImagePlaceholder && (
+        <div
+          aria-hidden
+          className={
+            "w-8 h-8 aspect-square absolute left-1.5 bg-white before:rounded-lg z-20 before:inset-0 before:absolute before:z-10 before:bg-gray-200"
+          }
+        />
+      )}
 
       <p className="font-mono text-sm truncate">:{name}:</p>
 

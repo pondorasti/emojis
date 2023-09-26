@@ -7,3 +7,5 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const nanoid = customAlphabet("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz", 7)
+
+export const formatPrompt = (prompt: string) => prompt.replace(/ /g, "-").replace(/-+/g, "-")
