@@ -1,45 +1,39 @@
 import { EmojiCard } from "@/app/_components/emoji-card"
 import { EmojiForm } from "@/app/_components/emoji-form"
-import { prisma } from "@/server/db"
+import { DEFAULT_OG_IMAGE } from "@/lib/constants"
+import { formatPrompt } from "@/lib/utils"
+import { getEmoji } from "@/server/get-emoji"
+import { Metadata } from "next"
 import { redirect } from "next/navigation"
 
-// export async function generateMetadata({
-//   params,
-// }: {
-//   params: {
-//     id: string;
-//   };
-// }): Promise<Metadata | undefined> {
-//   const data = await kv.hgetall<{ prompt: string; image?: string }>(params.id);
-//   if (!data) {
-//     return;
-//   }
+export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata | undefined> {
+  const data = await getEmoji(params.id)
+  if (!data) return
 
-//   const title = `Spirals: ${data.prompt}`;
-//   const description = `A spiral generated from the prompt: ${data.prompt}`;
-//   const image = data.image || "https://spirals.vercel.app/opengraph-image.png";
+  const title = `${formatPrompt(data.prompt)} | AI Emoji Generator`
+  const description = `An emoji generated from the prompt: ${data.prompt}`
+  const image = data.noBackgroundUrl || data.originalUrl || DEFAULT_OG_IMAGE
 
-//   return {
-//     title,
-//     description,
-//     openGraph: {
-//       title,
-//       description,
-//     },
-//     twitter: {
-//       card: "summary_large_image",
-//       title,
-//       description,
-//       creator: "@steventey",
-//     },
-//   };
-// }
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      images: [image],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [image],
+      creator: "@pondorasti",
+    },
+  }
+}
 
 export default async function Emoji({ params }: { params: { id: string } }) {
-  const data = await prisma.emoji.findUnique({
-    where: { id: params.id },
-  })
-
+  const data = await getEmoji(params.id)
   if (!data) redirect("/")
 
   return (
