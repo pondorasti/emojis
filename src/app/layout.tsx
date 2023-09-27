@@ -96,12 +96,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </div>
           </div>
 
-          <div className="animate-in fade-in slide-in-from-bottom-4 duration-1200 ease-in-out">
-            <h2 className="font-semibold text-md text-left w-full mb-3">Recents</h2>
-            <Suspense>
+          <Suspense>
+            <div className="animate-in fade-in slide-in-from-bottom-4 duration-1200 ease-in-out">
+              <h2 className="font-semibold text-md text-left w-full mb-3">Recents</h2>
               <EmojiGrid />
-            </Suspense>
-          </div>
+            </div>
+          </Suspense>
         </main>
         <Providers />
       </body>
