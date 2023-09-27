@@ -1,5 +1,5 @@
-import { EmojiCard } from "@/app/_components/emoji-card"
-import { EmojiForm } from "@/app/_components/emoji-form"
+import { EmojiCard } from "@/app/(emojis)/_components/emoji-card"
+import { EmojiForm } from "@/app/(emojis)/_components/emoji-form"
 import { DEFAULT_OG_IMAGE } from "@/lib/constants"
 import { formatPrompt } from "@/lib/utils"
 import { getEmoji } from "@/server/get-emoji"
