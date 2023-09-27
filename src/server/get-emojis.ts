@@ -9,6 +9,7 @@ export const getEmojis = cache(async () =>
   prisma.emoji.findMany({
     select: { id: true },
     orderBy: { createdAt: Prisma.SortOrder.desc },
+    where: { isFlagged: false },
     take: 1000,
   })
 )

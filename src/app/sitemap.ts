@@ -7,6 +7,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const emojis = await prisma.emoji.findMany({
     select: { id: true, updatedAt: true },
     orderBy: { createdAt: Prisma.SortOrder.desc },
+    where: { isFlagged: false },
     // recommended max sitemap size is 50,000 URLs
     take: 50_000,
   })
