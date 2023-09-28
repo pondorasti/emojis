@@ -1,29 +1,12 @@
+import { Favicon } from "@/app/_components/favicon"
 import { getEmoji } from "@/server/get-emoji"
-import { ImageResponse } from "next/server"
+import { EmojiContextProps } from "@/server/utils"
 
-export const size = { width: 32, height: 32 }
-export const contentType = "image/png"
+export { contentType, size } from "@/app/_components/favicon"
 
-export default async function Icon({ params }: { params: { id: string } }) {
+export default async function Icon({ params }: EmojiContextProps) {
   const data = await getEmoji(params.id)
   if (!data) return
 
-  return new ImageResponse(
-    (
-      <div
-        style={{
-          background: "white",
-          width: "100%",
-          height: "100%",
-          backgroundImage: `url(${data.noBackgroundUrl})`,
-          backgroundSize: "32px 32px",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center center",
-        }}
-      />
-    ),
-    {
-      ...size,
-    }
-  )
+  return Favicon({ url: data.noBackgroundUrl ?? "" })
 }

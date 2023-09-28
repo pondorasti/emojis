@@ -3,10 +3,11 @@ import { EmojiForm } from "@/app/_components/emoji-form"
 import { DEFAULT_OG_IMAGE } from "@/lib/constants"
 import { formatPrompt } from "@/lib/utils"
 import { getEmoji } from "@/server/get-emoji"
+import { EmojiContextProps } from "@/server/utils"
 import { Metadata } from "next"
 import { redirect } from "next/navigation"
 
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata | undefined> {
+export async function generateMetadata({ params }: EmojiContextProps): Promise<Metadata | undefined> {
   const data = await getEmoji(params.id)
   if (!data) return
 
@@ -32,7 +33,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   }
 }
 
-export default async function Emoji({ params }: { params: { id: string } }) {
+export default async function Emoji({ params }: EmojiContextProps) {
   const data = await getEmoji(params.id)
   if (!data) redirect("/")
 
