@@ -5,11 +5,11 @@ import { prisma } from "./db"
 
 export const revalidate = 60 // revalidate the data at most every 1 minute
 
-export const getEmojis = cache(async () =>
+export const getEmojis = cache(async (take: number = 1_000) =>
   prisma.emoji.findMany({
-    select: { id: true },
+    select: { id: true, updatedAt: true },
     orderBy: { createdAt: Prisma.SortOrder.desc },
-    where: { isFlagged: false },
-    take: 1000,
+    where: { isFlagged: false, originalUrl: { not: null }, noBackgroundUrl: { not: null } },
+    take,
   })
 )
