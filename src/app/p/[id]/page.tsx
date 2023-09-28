@@ -40,7 +40,7 @@ export default async function Emoji({ params }: EmojiContextProps) {
   return (
     <>
       <EmojiForm initialPrompt={data.prompt} />
-      <EmojiCard id={params.id} />
+      <EmojiCard id={params.id} alwaysShowDownloadBtn />
     </>
   )
 }
