@@ -34,3 +34,10 @@ export const webhookSchema = z.object({
     message: "Invalid secret",
   }),
 })
+
+export const emojiContextSchema = z.object({
+  params: z.object({
+    id: z.string(),
+  }),
+})
+export type EmojiContextProps = z.infer<typeof emojiContextSchema>
