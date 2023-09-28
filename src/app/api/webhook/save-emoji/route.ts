@@ -23,7 +23,7 @@ export async function POST(req: Request) {
     // update emoji
     await prisma.emoji.update({ where: { id }, data: { noBackgroundUrl: url } })
 
-    return Response.ok()
+    return Response.success()
   } catch (error) {
     console.error(error)
     return Response.internalServerError()

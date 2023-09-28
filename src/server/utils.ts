@@ -3,8 +3,8 @@ import "server-only"
 import { ZodError, z } from "zod"
 
 export class Response {
-  static ok() {
-    return NextResponse.json({ ok: true }, { status: 200 })
+  static success<JsonBody>(body: JsonBody = { ok: true } as JsonBody) {
+    return NextResponse.json(body, { status: 200 })
   }
 
   static internalServerError() {
@@ -15,8 +15,8 @@ export class Response {
     return NextResponse.json({ error: { message: "Unauthorized" } }, { status: 403 })
   }
 
-  static promptNotFound() {
-    return NextResponse.json({ error: { message: "Prompt not found" } }, { status: 404 })
+  static emojiNotFound() {
+    return NextResponse.json({ error: { message: "Emoji not found" } }, { status: 404 })
   }
 
   static badRequest(message: string) {

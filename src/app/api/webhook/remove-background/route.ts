@@ -28,7 +28,7 @@ export async function POST(req: Request) {
     const res = await replicate.removeBackground({ id, image: output[0] })
     console.log(res)
 
-    return Response.ok()
+    return Response.success()
   } catch (error) {
     console.error(error)
     return Response.internalServerError()
