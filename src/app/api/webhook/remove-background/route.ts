@@ -1,4 +1,4 @@
-import { Response, webhookSchema } from "@/server/constants"
+import { Response, webhookSchema } from "@/server/utils"
 import { prisma } from "@/server/db"
 import { replicate } from "@/server/replicate"
 import { put } from "@vercel/blob"
