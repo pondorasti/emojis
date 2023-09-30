@@ -21,13 +21,13 @@ export async function generateMetadata({ params }: EmojiContextProps): Promise<M
     openGraph: {
       title,
       description,
-      images: [image],
+      // images: [image],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: [image],
+      // images: [image],
       creator: "@pondorasti",
     },
   }
