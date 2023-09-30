@@ -1,3 +1,4 @@
+import { PROD_URL } from "@/lib/constants"
 import { cn } from "@/lib/utils"
 import { getEmojis } from "@/server/get-emojis"
 import { Github } from "lucide-react"
@@ -6,10 +7,9 @@ import { Inter } from "next/font/google"
 import Link from "next/link"
 import { Suspense } from "react"
 import { EmojiCard } from "./_components/emoji-card"
+import { EmojiCount } from "./_components/emoji-count"
 import { Providers } from "./_components/providers"
 import "./globals.css"
-import { DEFAULT_OG_IMAGE, PROD_URL } from "@/lib/constants"
-import { EmojiCount } from "./_components/emoji-count"
 
 /**
  * Opt out of caching for all data requests in the route segment. Based on the docs,
@@ -36,14 +36,13 @@ const inter = Inter({ subsets: ["latin"] })
 
 export function generateMetadata(): Metadata {
   const title = "AI Emoji Generator"
-  const description = "Generate beautiful emojis in seconds"
+  const description = "Turn your ideas into emojis in seconds. Generate your favorite Slack emojis with just one click."
 
   return {
     metadataBase: new URL(PROD_URL),
     title,
     description,
     openGraph: {
-      images: [DEFAULT_OG_IMAGE],
       title,
       description,
       url: PROD_URL,
@@ -53,7 +52,6 @@ export function generateMetadata(): Metadata {
     },
     twitter: {
       card: "summary_large_image",
-      images: [DEFAULT_OG_IMAGE],
       title,
       description,
       creator: "@pondorasti",
