@@ -10,7 +10,7 @@ interface FormState {
 }
 
 export async function createEmoji(prevFormState: FormState | undefined, formData: FormData): Promise<FormState | void> {
-  const prompt = formData.get("prompt") as string | null
+  const prompt = (formData.get("prompt") as string | null)?.trim()
   if (!prompt) return { message: "Please enter a prompt" }
 
   const id = nanoid()
