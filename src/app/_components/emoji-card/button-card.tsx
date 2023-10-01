@@ -3,7 +3,7 @@
 import { EMOJI_SIZE } from "@/lib/constants"
 import { Download } from "lucide-react"
 import Image from "next/image"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import toast from "react-hot-toast"
 import { Loader } from "../loader"
 import { cn } from "@/lib/utils"
@@ -29,13 +29,16 @@ function downloadBlob(blobUrl: string, filename: string) {
 async function fetcher(url: string) {
   return fetch(url)
     .then((res) => res.json())
-    .then((json) => json.emoji.noBackgroundUrl)
+    .then((json) => ({
+      recentSrc: json.emoji.noBackgroundUrl,
+      error: json.emoji.error,
+    }))
 }
 
 export function ButtonCard({ id, name, src: _src, createdAt, alwaysShowDownloadBtn }: ButtonCard) {
   // revalidate image src every second while generating (max 1 minute)
   const isGenerating = new Date(createdAt).getTime() > Date.now() - 60_000
-  const { data: recentSrc, isLoading: isLoadingEmoji } = useSWR<string | undefined>(
+  const { data, isLoading: isLoadingEmoji } = useSWR<Awaited<ReturnType<typeof fetcher>>>(
     !_src && isGenerating ? `/api/emojis/${id}` : null,
     {
       fetcher,
@@ -46,9 +49,14 @@ export function ButtonCard({ id, name, src: _src, createdAt, alwaysShowDownloadB
   const [isLoadingImage, setIsLoadingImage] = useState(false)
   const [isDownloadingEmoji, setIsDownloadingEmoji] = useState(false)
 
-  const src = recentSrc || _src
+  const src = data?.recentSrc || _src
   const showImageTag = !!src // don't render image tag if no src
   const showImagePlaceholder = isLoadingEmoji || isLoadingImage || !showImageTag
+
+  useEffect(() => {
+    if (isLoadingEmoji || !data?.error) return
+    toast.error(data.error)
+  }, [isLoadingEmoji, data?.error])
 
   async function handleDownload() {
     if (!src) return
