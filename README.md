@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<a href="https://emojis.alexandru.so/">
+  <h1 align="center">emojis</h1>
+</a>
 
-## Getting Started
+<p align="center">
+  Turn your ideas into emojis in seconds. Generate your favorite Slack emojis with just one click.
+</p>
 
-First, run the development server:
+<p align="center">
+  <a href="https://twitter.com/pondorasti">
+    <img src="https://img.shields.io/twitter/follow/pondorasti?style=flat&logo=x&color=0bf&logoColor=fff" alt="Alexandru Ţurcanu's X follower count" />
+  </a>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+  <a href="https://github.com/pondorasti/emojis">
+    <img src="https://img.shields.io/github/stars/pondorasti/emojis?label=pondorasti%2Femojis" alt="pondorasti/emojis repo star count" />
+  </a>
+</p>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<p align="center">
+  <a href="#tech-stack"><strong>Tech Stack</strong></a> ·
+  <a href="#author"><strong>Author</strong></a> ·
+  <a href="#credits"><strong>Credits</strong></a>
+</p>
+<br/>
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Tech Stack
 
-## Learn More
+- [Replicate](https://replicate.com/) - AI provider
+- [Bun](https://bun.sh/) - package manager
+- [PlanetScale](https://planetscale.com/) - database
+- [Prisma](https://www.prisma.io/) - ORM
+- [Next.js](https://nextjs.org/docs/app) - app router, server actions
+- [Vercel Blob](https://vercel.com/storage/blob) - storage
+- [Vercel](https://vercel.com/) - hosting
 
-To learn more about Next.js, take a look at the following resources:
+## Author
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Alexandru Ţurcanu ([@pondorasti](https://x.com/pondorasti))
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Credits
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- [sdxl-emoji](https://replicate.com/fofr/sdxl-emoji) - fine tuned SDXL based on Apple's emojis by [@fofrAI](https://twitter.com/fofrAI)
+- [prompt-classifier](https://replicate.com/fofr/prompt-classifier) - fine tuned llama-13b for determining toxicity by [@fofrAI](https://twitter.com/fofrAI)
+- [rembg](https://replicate.com/fofr/prompt-classifier) - remove images background model by [@chenxwh](https://github.com/chenxwh)
+- [Spirals](https://spirals.vercel.app/) - starter template and code examples by [@steventey](https://twitter.com/steventey)
+- [EmojiGen](https://github.com/cbh123/emoji) - original emoji generator by [@charliebholtz](https://twitter.com/charliebholtz)
