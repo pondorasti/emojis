@@ -7,6 +7,10 @@ export class ReplicateClient {
 
   constructor({ auth }: { auth: string }) {
     this.replicate = new Replicate({ auth })
+
+    // 🫠 - https://github.com/replicate/replicate-javascript/issues/136
+    this.replicate.fetch = (input: RequestInfo | URL, init?: RequestInit) =>
+      fetch(input, { ...init, cache: "no-store" })
   }
 
   async createEmoji({ id, prompt }: { id: string; prompt: string }) {
@@ -42,6 +46,27 @@ export class ReplicateClient {
       webhook: webhook.toString(),
       webhook_events_filter: ["completed"],
     })
+  }
+
+  async classifyPrompt({ prompt: _prompt }: { prompt: string }): Promise<number> {
+    const prompt = `[PROMPT] ${_prompt} [/PROMPT] [SAFETY_RANKING]`
+
+    const output = await this.replicate.run(
+      "fofr/prompt-classifier:1ffac777bf2c1f5a4a5073faf389fefe59a8b9326b3ca329e9d576cce658a00f",
+      {
+        input: {
+          prompt,
+          max_new_tokens: 128,
+          temperature: 0.2,
+          top_p: 0.9,
+          top_k: 50,
+          stop_sequences: "[/SAFETY_RANKING]",
+        },
+      }
+    )
+
+    const safetyRating = Number((output as string[] | undefined)?.join("").trim())
+    return safetyRating || 0
   }
 }
 
