@@ -20,4 +20,5 @@ model Emoji {
   isFeatured      Boolean  @default(false)
   originalUrl     String?
   noBackgroundUrl String?
+  safetyRating    Int
 }

@@ -5,6 +5,7 @@ import { createEmoji } from "./action"
 import { SubmitButton } from "./submit-button"
 // @ts-expect-error
 import { experimental_useFormState as useFormState } from "react-dom"
+import toast from "react-hot-toast"
 
 interface EmojiFormProps {
   initialPrompt?: string
@@ -16,8 +17,7 @@ export function EmojiForm({ initialPrompt }: EmojiFormProps) {
 
   useEffect(() => {
     if (!formState) return
-    // TODO: show toast
-    console.log(formState.message)
+    toast.error(formState.message)
   }, [formState])
 
   return (
