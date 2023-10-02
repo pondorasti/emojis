@@ -21,6 +21,11 @@
   <a href="#author"><strong>Author</strong></a> ·
   <a href="#credits"><strong>Credits</strong></a>
 </p>
+
+<a href="https://emojis.alexandru.so/">
+    <img alt="grid of ai generated emojis including pepe-soldier, goldendoodle, minecraft-tree, and pusheen-dog " src="public/_static/readme.png"> 
+</a>
+
 <br/>
 
 
