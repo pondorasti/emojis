@@ -10,7 +10,7 @@ interface FormState {
 }
 
 export async function createEmoji(prevFormState: FormState | undefined, formData: FormData): Promise<FormState | void> {
-  const prompt = (formData.get("prompt") as string | null)?.trim()
+  const prompt = (formData.get("prompt") as string | null)?.trim().replaceAll(":", "")
   if (!prompt) return // no need to display an error message for blank prompts
 
   const id = nanoid()

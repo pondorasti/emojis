@@ -42,7 +42,7 @@ export function ButtonCard({ id, name, src: _src, createdAt, alwaysShowDownloadB
     !_src && isGenerating ? `/api/emojis/${id}` : null,
     {
       fetcher,
-      refreshInterval: (src) => (!!src ? 0 : 1_000), // 1 second
+      refreshInterval: (data) => (!!data?.recentSrc || !isGenerating ? 0 : 1000), // 1 second
     }
   )
 
@@ -52,6 +52,11 @@ export function ButtonCard({ id, name, src: _src, createdAt, alwaysShowDownloadB
   const src = data?.recentSrc || _src
   const showImageTag = !!src // don't render image tag if no src
   const showImagePlaceholder = isLoadingEmoji || isLoadingImage || !showImageTag
+
+  useEffect(() => {
+    if (!showImageTag || !isLoadingImage) return
+    setIsLoadingImage(true)
+  }, [isLoadingImage, showImageTag])
 
   useEffect(() => {
     if (isLoadingEmoji || !data?.error) return
