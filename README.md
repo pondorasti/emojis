@@ -61,6 +61,6 @@ Note that you'll need to:
 
 - [sdxl-emoji](https://replicate.com/fofr/sdxl-emoji) - fine tuned SDXL based on Apple's emojis by [@fofrAI](https://twitter.com/fofrAI)
 - [prompt-classifier](https://replicate.com/fofr/prompt-classifier) - fine tuned llama-13b for determining toxicity by [@fofrAI](https://twitter.com/fofrAI)
-- [rembg](https://replicate.com/fofr/prompt-classifier) - remove images background model by [@chenxwh](https://github.com/chenxwh)
+- [rembg](https://replicate.com/cjwbw/rembg) - remove images background model by [@chenxwh](https://github.com/chenxwh)
 - [Spirals](https://spirals.vercel.app/) - starter template and code examples by [@steventey](https://twitter.com/steventey)
 - [EmojiGen](https://github.com/cbh123/emoji) - original emoji generator by [@charliebholtz](https://twitter.com/charliebholtz)
