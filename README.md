@@ -18,6 +18,7 @@
 
 <p align="center">
   <a href="#tech-stack"><strong>Tech Stack</strong></a> ·
+  <a href="#tech-stack"><strong>Deploy Your Own</strong></a> ·
   <a href="#author"><strong>Author</strong></a> ·
   <a href="#credits"><strong>Credits</strong></a>
 </p>
@@ -38,6 +39,18 @@
 - [Next.js](https://nextjs.org/docs/app) - app router, server actions
 - [Vercel Blob](https://vercel.com/storage/blob) - storage
 - [Vercel](https://vercel.com/) - hosting
+
+## Deploy Your Own
+
+You can deploy this template to Vercel with the button below:
+
+[![Deploy with Vercel](https://vercel.com/button)](https://dub.sh/emojis-deploy)
+
+Note that you'll need to:
+
+- Set up [Replicate](https://replicate.com)
+- Set up [PlanetScale](https://planetscale.com/)
+- Set up [Vercel Blob](https://vercel.com/docs/storage/vercel-blob/quickstart)
 
 ## Author
 
