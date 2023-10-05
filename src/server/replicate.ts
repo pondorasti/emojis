@@ -16,7 +16,7 @@ export class ReplicateClient {
   async createEmoji({ id, prompt }: { id: string; prompt: string }) {
     const webhook = new URL(`${SITE_URL}/api/webhook/remove-background`)
     webhook.searchParams.set("id", id)
-    webhook.searchParams.set("secret", process.env.WEBHOOK_SECRET as string)
+    webhook.searchParams.set("secret", process.env.API_SECRET as string)
 
     return this.replicate.predictions.create({
       version: "dee76b5afde21b0f01ed7925f0665b7e879c50ee718c5f78a9d38e04d523cc5e",
@@ -36,7 +36,7 @@ export class ReplicateClient {
   async removeBackground({ id, image }: { id: string; image: string }) {
     const webhook = new URL(`${SITE_URL}/api/webhook/save-emoji`)
     webhook.searchParams.set("id", id)
-    webhook.searchParams.set("secret", process.env.WEBHOOK_SECRET as string)
+    webhook.searchParams.set("secret", process.env.API_SECRET as string)
 
     return this.replicate.predictions.create({
       version: "fb8af171cfa1616ddcf1242c093f9c46bcada5ad4cf6f2fbe8b81b330ec5c003",
