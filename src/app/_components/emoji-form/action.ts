@@ -1,5 +1,6 @@
 "use server"
 
+import { SITE_URL } from "@/lib/constants"
 import { nanoid } from "@/lib/utils"
 import { prisma } from "@/server/db"
 import { replicate } from "@/server/replicate"
@@ -10,6 +11,11 @@ interface FormState {
 }
 
 export async function createEmoji(prevFormState: FormState | undefined, formData: FormData): Promise<FormState | void> {
+  const rateLimitRes = await fetch(`${SITE_URL}/api/rate-limit`, {
+    headers: { Authorization: `Bearer ${process.env.API_SECRET}` },
+  })
+  if (!rateLimitRes.ok) return { message: "Too many requests, please try again later." }
+
   const prompt = (formData.get("prompt") as string | null)?.trim().replaceAll(":", "")
   if (!prompt) return // no need to display an error message for blank prompts
 

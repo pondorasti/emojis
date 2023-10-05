@@ -3,8 +3,10 @@ import "server-only"
 import { ZodError, z } from "zod"
 
 export class Response {
-  static success<JsonBody>(body: JsonBody = { ok: true } as JsonBody) {
-    return NextResponse.json(body, { status: 200 })
+  static success<JsonBody>(props?: { body?: JsonBody; headers?: HeadersInit }) {
+    const { headers } = props ?? {}
+    const body = props?.body ?? { ok: true }
+    return NextResponse.json(body, { status: 200, headers })
   }
 
   static internalServerError() {
@@ -26,11 +28,15 @@ export class Response {
   static invalidRequest(zodError: ZodError) {
     return NextResponse.json({ error: { message: "Invalid request", details: zodError } }, { status: 400 })
   }
+
+  static tooManyRequests({ headers }: { headers?: HeadersInit }) {
+    return NextResponse.json({ error: { message: "Too many requests" } }, { status: 429, headers })
+  }
 }
 
 export const webhookSchema = z.object({
   id: z.string().length(7),
-  secret: z.string().refine((data) => data === process.env.WEBHOOK_SECRET, {
+  secret: z.string().refine((data) => data === process.env.API_SECRET, {
     message: "Invalid secret",
   }),
 })
