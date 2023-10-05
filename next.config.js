@@ -7,6 +7,7 @@ const nextConfig = withAxiom({
   },
   images: {
     domains: ["aaah0mnbncqtinas.public.blob.vercel-storage.com"],
+    unoptimized: true,
   },
 })
 
