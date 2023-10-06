@@ -4,7 +4,7 @@ import { MetadataRoute } from "next"
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // recommended max sitemap size is 50,000 URLs
-  const emojis = await getEmojis(50_000)
+  const emojis = await getEmojis(49_999)
 
   return [
     {
