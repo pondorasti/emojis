@@ -1,7 +1,7 @@
 "use client"
 
 import { EMOJI_SIZE } from "@/lib/constants"
-import { Download } from "lucide-react"
+import { Download, Link } from "lucide-react"
 import Image from "next/image"
 import { useEffect, useState } from "react"
 import toast from "react-hot-toast"
@@ -48,6 +48,7 @@ export function ButtonCard({ id, name, src: _src, createdAt, alwaysShowDownloadB
 
   const [isLoadingImage, setIsLoadingImage] = useState(false)
   const [isDownloadingEmoji, setIsDownloadingEmoji] = useState(false)
+  const [isCopyingLink, setIsCopyingLink] = useState(false)
 
   const src = data?.recentSrc || _src
   const showImageTag = !!src // don't render image tag if no src
@@ -87,6 +88,23 @@ export function ButtonCard({ id, name, src: _src, createdAt, alwaysShowDownloadB
     }
   }
 
+  function handleCopyLink() {
+    if (!src) return
+
+    setIsCopyingLink(true)
+    const toastId = toast.loading(`Copying link to :${name}:`)
+
+    try {
+      navigator.clipboard.writeText(`${location.origin}/p/${id}`)
+      toast.success(`Copied link to :${name}:`, { id: toastId })
+    } catch (error) {
+      console.error(error)
+      toast.error(`Failed to copy link to :${name}:`, { id: toastId })
+    } finally {
+      setIsCopyingLink(false)
+    }
+  }
+
   return (
     <div
       id={id}
@@ -112,6 +130,19 @@ export function ButtonCard({ id, name, src: _src, createdAt, alwaysShowDownloadB
       )}
 
       <p className="font-mono text-sm truncate">:{name}:</p>
+
+      <button
+        className={cn(
+          "w-8 h-8 aspect-square flex items-center justify-center rounded-lg ring-1 ring-gray-200 absolute right-1 opacity-100 group-hover:opacity-100 transition-opacity duration-200 ease-out bg-white shadow focus:opacity-100",
+          !alwaysShowDownloadBtn && "sm:opacity-0",
+          !showImageTag && "hidden"
+        )}
+        onClick={handleCopyLink}
+        disabled={isCopyingLink || !showImageTag}
+      >
+        <span className="sr-only">Copy link</span>
+        {isCopyingLink ? <Loader /> : <Link size={16} />}
+      </button>
 
       <button
         className={cn(
