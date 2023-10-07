@@ -1,6 +1,6 @@
-import { prisma } from "@/server/db"
-import { ButtonCard } from "./button-card"
 import { formatPrompt } from "@/lib/utils"
+import { getEmoji } from "@/server/get-emoji"
+import { ButtonCard } from "./button-card"
 
 interface EmojiCardProps {
   id: string
@@ -8,7 +8,7 @@ interface EmojiCardProps {
 }
 
 export async function EmojiCard({ id, alwaysShowDownloadBtn }: EmojiCardProps) {
-  const data = await prisma.emoji.findUnique({ where: { id } })
+  const data = await getEmoji(id)
   if (!data) return null
 
   return (
