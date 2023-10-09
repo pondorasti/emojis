@@ -1,4 +1,4 @@
-<a href="https://emojis.alexandru.so/">
+<a href="https://emojis.sh/">
   <h1 align="center">emojis</h1>
 </a>
 
@@ -23,7 +23,7 @@
   <a href="#credits"><strong>Credits</strong></a>
 </p>
 
-<a href="https://emojis.alexandru.so/">
+<a href="https://emojis.sh/">
     <img alt="grid of ai generated emojis including pepe-soldier, goldendoodle, minecraft-tree, and pusheen-dog " src="public/_static/readme.png"> 
 </a>
 

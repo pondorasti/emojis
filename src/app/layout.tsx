@@ -46,7 +46,7 @@ export function generateMetadata(): Metadata {
       title,
       description,
       url: PROD_URL,
-      siteName: "emojis.alexandru.so",
+      siteName: "emojis.sh",
       locale: "en_US",
       type: "website",
     },
