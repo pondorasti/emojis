@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html,
+  body {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
 @layer components {
   .skeleton {
     @apply relative before:animate-shimmer before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-black/[0.08] before:to-transparent before:z-50 overflow-hidden;
