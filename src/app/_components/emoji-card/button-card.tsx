@@ -111,7 +111,7 @@ export function ButtonCard({ id, name, src: _src, createdAt, alwaysShowDownloadB
         </div>
       )}
 
-      <p className="font-mono text-sm truncate">:{name}:</p>
+      <p className="font-mono text-sm truncate" title={name}>:{name}:</p>
 
       <button
         className={cn(
