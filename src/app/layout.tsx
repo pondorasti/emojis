@@ -10,6 +10,7 @@ import { EmojiCard } from "./_components/emoji-card"
 import { EmojiCount } from "./_components/emoji-count"
 import { Providers } from "./_components/providers"
 import "./globals.css"
+import Image from "next/image"
 
 /**
  * Opt out of caching for all data requests in the route segment. Based on the docs,
@@ -91,15 +92,32 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <span>emojis</span>
           </Link>
 
-          <Link
-            href="https://github.com/pondorasti/emojis"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center"
-          >
-            <span className="sr-only">Github Repository</span>
-            <Github size={20} />
-          </Link>
+          <div className="flex flex-row flex-nowrap gap-x-1.5 items-center">
+            <Link
+              href="https://apps.apple.com/us/app/ai-emojis-ai-art-generator/id6468916301"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span className="sr-only">Download App</span>
+              <Image
+                src="/_static/AppStoreBadge.svg"
+                alt="App Store Badge"
+                width={120}
+                height={40}
+                priority
+                className="h-8"
+              />
+            </Link>
+            <Link
+              href="https://github.com/pondorasti/emojis"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center"
+            >
+              <span className="sr-only">Github Repository</span>
+              <Github size={20} />
+            </Link>
+          </div>
         </header>
         <main className={cn("min-h-screen flex items-stretch flex-col pb-28 max-w-5xl mx-auto", BODY_PADDING)}>
           <div className="py-[15vh] sm:py-[20vh] flex flex-col items-center justify-center">
