@@ -43,6 +43,10 @@ export function generateMetadata(): Metadata {
     metadataBase: new URL(PROD_URL),
     title,
     description,
+    applicationName: "AI Emojis",
+    other: {
+      "apple-itunes-app": "app-id=6468916301",
+    },
     openGraph: {
       title,
       description,
