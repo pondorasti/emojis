@@ -64,3 +64,5 @@ Note that you'll need to:
 - [rembg](https://replicate.com/cjwbw/rembg) - remove images background model by [@chenxwh](https://github.com/chenxwh)
 - [Spirals](https://spirals.vercel.app/) - starter template and code examples by [@steventey](https://twitter.com/steventey)
 - [EmojiGen](https://github.com/cbh123/emoji) - original emoji generator by [@charliebholtz](https://twitter.com/charliebholtz)
+
+.
