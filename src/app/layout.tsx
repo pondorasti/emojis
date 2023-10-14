@@ -30,6 +30,7 @@ import Image from "next/image"
  * @see https://nextjs.org/docs/app/building-your-application/rendering/server-components#dynamic-rendering
  */
 export const dynamic = "force-dynamic"
+export const runtime = "edge"
 
 const BODY_PADDING = "px-4 sm:px-6"
 
