@@ -16,6 +16,11 @@ const nextConfig = withAxiom({
       permanent: false,
       basePath: false,
     },
+    {
+      source: "/sitemap.xml",
+      destination: "/sitemap",
+      permanent: true,
+    },
   ],
 })
 
