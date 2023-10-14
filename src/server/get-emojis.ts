@@ -2,7 +2,6 @@ import { Prisma } from "@prisma/client"
 import { cache } from "react"
 import "server-only"
 import { prisma } from "./db"
-import ms from "ms"
 
 export const getEmojis = cache(async (take: number = 100) =>
   prisma.emoji.findMany({

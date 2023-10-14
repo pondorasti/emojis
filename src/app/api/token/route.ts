@@ -4,10 +4,10 @@ import { nanoid } from "nanoid"
 import { type NextRequest } from "next/server"
 
 export const runtime = "edge"
+export const revalidate = 0
 
 export async function GET(request: NextRequest) {
   const ip = request.ip ?? "127.0.0.1"
-  console.log({ ip })
   const token = await new SignJWT({ ip })
     .setProtectedHeader({ alg: "HS256" })
     .setJti(nanoid())
