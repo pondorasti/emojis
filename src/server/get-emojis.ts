@@ -9,5 +9,6 @@ export const getEmojis = cache(async (take: number = 100) =>
     orderBy: { createdAt: Prisma.SortOrder.desc },
     where: { isFlagged: false, originalUrl: { not: null }, noBackgroundUrl: { not: null } },
     take,
+    cacheStrategy: { swr: 60 },
   })
 )
