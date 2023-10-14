@@ -1,5 +1,6 @@
 import { CornerDownLeft } from "lucide-react"
 import React from "react"
+// @ts-ignore
 import { experimental_useFormStatus as useFormStatus } from "react-dom"
 import { Loader } from "../loader"
 
