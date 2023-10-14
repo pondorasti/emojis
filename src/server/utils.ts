@@ -47,3 +47,9 @@ export const emojiContextSchema = z.object({
   }),
 })
 export type EmojiContextProps = z.infer<typeof emojiContextSchema>
+
+export const VALID_EMOJI_FILTER = {
+  isFlagged: false,
+  originalUrl: { not: null },
+  noBackgroundUrl: { not: null },
+}

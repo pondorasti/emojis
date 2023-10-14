@@ -2,12 +2,21 @@ import { Prisma } from "@prisma/client"
 import { cache } from "react"
 import "server-only"
 import { prisma } from "./db"
+import { VALID_EMOJI_FILTER } from "./utils"
 
-export const getEmojis = cache(async (take: number = 100) =>
-  prisma.emoji.findMany({
-    select: { id: true, updatedAt: true },
-    orderBy: { createdAt: Prisma.SortOrder.desc },
-    where: { isFlagged: false, originalUrl: { not: null }, noBackgroundUrl: { not: null } },
-    take,
-  })
+export const getEmojis = cache(
+  async (
+    { take, skip, orderBy }: { take?: number; skip?: number; orderBy?: Prisma.EmojiOrderByWithRelationInput } = {
+      take: 100,
+      skip: undefined,
+      orderBy: { createdAt: Prisma.SortOrder.desc },
+    }
+  ) =>
+    prisma.emoji.findMany({
+      select: { id: true, updatedAt: true },
+      orderBy,
+      where: VALID_EMOJI_FILTER,
+      take,
+      skip,
+    })
 )
