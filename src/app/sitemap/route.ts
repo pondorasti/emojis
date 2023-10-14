@@ -9,12 +9,14 @@ export async function GET() {
     <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
       <url>
         <loc>${PROD_URL}/</loc>
+        <lastmod>${new Date().toISOString()}</lastmod>
       </url>
       ${Array.from({ length: totalSitemaps })
         .map(
           (_, index) => `
         <sitemap>
           <loc>${PROD_URL}/api/sitemaps/${index}</loc>
+          <lastmod>${new Date().toISOString()}</lastmod>
         </sitemap>
       `
         )

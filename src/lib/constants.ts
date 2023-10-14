@@ -1,5 +1,4 @@
-// export const PROD_URL = "https://emojis.sh"
-export const PROD_URL = "https://emojis-git-feat-sitemap-pagination-pondorasti.vercel.app"
+export const PROD_URL = "https://emojis.sh"
 export const SITE_URL =
   process.env.NEXT_PUBLIC_VERCEL_ENV === "production" || process.env.NEXT_PUBLIC_VERCEL_ENV === "preview"
     ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`

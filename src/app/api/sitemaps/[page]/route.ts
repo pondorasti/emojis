@@ -30,6 +30,7 @@ export async function GET(request: Request, { params }: SitemapContextProps) {
   return new Response(xml, {
     status: 200,
     headers: {
+      // Cache for 1 day w/ swr
       "Cache-control": "public, s-maxage=86400, stale-while-revalidate",
       "content-type": "application/xml",
     },
