@@ -8,6 +8,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const path = headersList.get("x-invoke-path") ?? ""
   const page = parseInt(path.split("/")[3])
 
+  console.log({ page, path })
+
   if (isNaN(page)) return []
   const emojis = await getEmojis(SITEMAP_PAGE_SIZE, page * SITEMAP_PAGE_SIZE)
 
