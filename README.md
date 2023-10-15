@@ -33,12 +33,13 @@
 ## Tech Stack
 
 - [Replicate](https://replicate.com/) - AI provider
-- [Bun](https://bun.sh/) - package manager
-- [PlanetScale](https://planetscale.com/) - database
+- [Bun](https://bun.sh/) - Package Manager
+- [PlanetScale](https://planetscale.com/) - MySQL database
 - [Prisma](https://www.prisma.io/) - ORM
-- [Next.js](https://nextjs.org/docs/app) - app router, server actions
-- [Vercel Blob](https://vercel.com/storage/blob) - storage
-- [Vercel](https://vercel.com/) - hosting
+- [Next.js](https://nextjs.org/docs/app) - App Router, Server Actions
+- [Vercel Blob](https://vercel.com/storage/blob) - Storage Bucket
+- [Vercel KV](https://vercel.com/storage/kv) - Redis Database 
+- [Vercel](https://vercel.com/) - Hosting
 
 ## Deploy Your Own
 
@@ -51,6 +52,7 @@ Note that you'll need to:
 - Set up [Replicate](https://replicate.com)
 - Set up [PlanetScale](https://planetscale.com/)
 - Set up [Vercel Blob](https://vercel.com/docs/storage/vercel-blob/quickstart)
+- Set up [Vercel KV](https://vercel.com/docs/storage/vercel-kv/quickstart)
 
 ## Author
 
