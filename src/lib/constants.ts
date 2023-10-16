@@ -3,6 +3,7 @@ export const SITE_URL =
   process.env.NEXT_PUBLIC_VERCEL_ENV === "production" || process.env.NEXT_PUBLIC_VERCEL_ENV === "preview"
     ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
     : process.env.NGROK_URL
+export const APP_STORE_URL = "https://apps.apple.com/us/app/ai-emojis-generator/id6468916301"
 
 export const SITEMAP_PAGE_SIZE = 50_000
 

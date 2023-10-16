@@ -12,7 +12,7 @@ const nextConfig = withAxiom({
   redirects: async () => [
     {
       source: "/app",
-      destination: "https://apps.apple.com/us/app/ai-emojis-ai-art-generator/id6468916301",
+      destination: "https://apps.apple.com/us/app/ai-emojis-generator/id6468916301",
       permanent: false,
       basePath: false,
     },
