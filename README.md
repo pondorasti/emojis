@@ -19,8 +19,9 @@
 <p align="center">
   <a href="#tech-stack"><strong>Tech Stack</strong></a> ·
   <a href="#tech-stack"><strong>Deploy Your Own</strong></a> ·
-  <a href="#author"><strong>Author</strong></a> ·
-  <a href="#credits"><strong>Credits</strong></a>
+  <a href="#authors"><strong>Authors</strong></a> ·
+  <a href="#credits"><strong>Credits</strong></a> ·
+  <a href="#legal"><strong>Legal</strong></a>
 </p>
 
 <a href="https://emojis.sh/">
@@ -54,9 +55,10 @@ Note that you'll need to:
 - Set up [Vercel Blob](https://vercel.com/docs/storage/vercel-blob/quickstart)
 - Set up [Vercel KV](https://vercel.com/docs/storage/vercel-kv/quickstart)
 
-## Author
+## Authors
 
 - Alexandru Ţurcanu ([@pondorasti](https://x.com/pondorasti))
+- Dylan Player ([@dylanplayer](https://twitter.com/dylanplayer))
 
 ## Credits
 
@@ -66,3 +68,9 @@ Note that you'll need to:
 - [rembg](https://replicate.com/cjwbw/rembg) - remove images background model by [@chenxwh](https://github.com/chenxwh)
 - [Spirals](https://spirals.vercel.app/) - starter template and code examples by [@steventey](https://twitter.com/steventey)
 - [EmojiGen](https://github.com/cbh123/emoji) - original emoji generator by [@charliebholtz](https://twitter.com/charliebholtz)
+
+## Legal
+
+- [AGPL-3.0 License](https://github.com/Pondorasti/emojis/blob/main/LICENSE)
+- [Terms & Conditions](https://emojis.sh/terms)
+- [Privacy Policy](https://emojis.sh/privacy)
