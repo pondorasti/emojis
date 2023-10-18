@@ -11,7 +11,7 @@ import { redirect } from "next/navigation"
 const ratelimit = new Ratelimit({
   redis: kv,
   // 3 requests from the same IP in 1 day
-  limiter: Ratelimit.slidingWindow(3, "1 d"),
+  limiter: Ratelimit.slidingWindow(10, "1 d"),
 })
 
 interface FormState {

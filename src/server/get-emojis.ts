@@ -3,29 +3,22 @@ import "server-only"
 import { prisma } from "./db"
 import { VALID_EMOJI_FILTER } from "./utils"
 
-export const getEmojis = async (
-  {
-    take,
-    skip,
-    orderBy,
-  }: {
-    take?: number
-    skip?: number
-    orderBy?:
-      | Prisma.EmojiOrderByWithRelationAndSearchRelevanceInput
-      | Prisma.EmojiOrderByWithRelationAndSearchRelevanceInput[]
-  } = {
-    take: 100,
-    skip: undefined,
-    orderBy: { createdAt: Prisma.SortOrder.desc },
-  }
-) =>
-  prisma.emoji.findMany({
+export const getEmojis = async (opts: {
+  take?: number
+  skip?: number
+  orderBy?:
+    | Prisma.EmojiOrderByWithRelationAndSearchRelevanceInput
+    | Prisma.EmojiOrderByWithRelationAndSearchRelevanceInput[]
+}) => {
+  const take = opts.take ?? 100
+  const skip = opts.skip ?? undefined
+  const orderBy = opts.orderBy ?? { createdAt: Prisma.SortOrder.desc }
+
+  return prisma.emoji.findMany({
     select: { id: true, updatedAt: true },
     orderBy,
-    where: {
-      ...VALID_EMOJI_FILTER,
-    },
+    where: VALID_EMOJI_FILTER,
     take,
     skip,
   })
+}
