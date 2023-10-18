@@ -10,8 +10,8 @@ import { redirect } from "next/navigation"
 
 const ratelimit = new Ratelimit({
   redis: kv,
-  // 500 requests from the same IP in 1 day
-  limiter: Ratelimit.slidingWindow(500, "1 d"),
+  // 3 requests from the same IP in 1 day
+  limiter: Ratelimit.slidingWindow(3, "1 d"),
 })
 
 interface FormState {
@@ -31,7 +31,7 @@ export async function createEmoji(prevFormState: FormState | undefined, formData
     if (typeof ip !== "string") throw new Error("IP not found in token payload")
 
     const { remaining } = await ratelimit.limit(ip)
-    if (remaining <= 0) return { message: "Too many requests, please try again later." }
+    if (remaining <= 0) return { message: "Free limit reached, download mobile app for unlimited access." }
 
     const safetyRating = await replicate.classifyPrompt({ prompt })
     const data = { id, prompt, safetyRating }
