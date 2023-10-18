@@ -1,5 +1,5 @@
 import { EmojiCard } from "@/app/_components/emoji-card"
-import { EmojiForm } from "@/app/_components/emoji-form"
+import { PageContent } from "@/app/_components/page-content"
 import { formatPrompt } from "@/lib/utils"
 import { getEmoji } from "@/server/get-emoji"
 import { EmojiContextProps } from "@/server/utils"
@@ -34,9 +34,8 @@ export default async function Emoji({ params }: EmojiContextProps) {
   if (!data) redirect("/")
 
   return (
-    <>
-      <EmojiForm initialPrompt={data.prompt} />
+    <PageContent prompt={data.prompt}>
       <EmojiCard id={params.id} alwaysShowDownloadBtn />
-    </>
+    </PageContent>
   )
 }

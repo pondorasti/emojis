@@ -1,5 +1,5 @@
-import { EmojiForm } from "./_components/emoji-form"
+import { PageContent } from "./_components/page-content"
 
 export default function Home() {
-  return <EmojiForm />
+  return <PageContent />
 }

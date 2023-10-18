@@ -1,16 +1,15 @@
 import { APP_STORE_URL, PROD_URL } from "@/lib/constants"
 import { cn } from "@/lib/utils"
-import { getEmojis } from "@/server/get-emojis"
 import { Github } from "lucide-react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
+import Image from "next/image"
 import Link from "next/link"
 import { Suspense } from "react"
-import { EmojiCard } from "./_components/emoji-card"
 import { EmojiCount } from "./_components/emoji-count"
+import { EmojiGrid } from "./_components/emoji-grid"
 import { Providers } from "./_components/providers"
 import "./globals.css"
-import Image from "next/image"
 
 /**
  * Opt out of caching for all data requests in the route segment. Based on the docs,
@@ -121,38 +120,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </div>
         </header>
         <main className={cn("min-h-screen flex items-stretch flex-col pb-28 max-w-5xl mx-auto", BODY_PADDING)}>
-          <div className="py-[15vh] sm:py-[20vh] flex flex-col items-center justify-center">
-            <h1 className="font-medium text-4xl text-black mb-3 animate-in fade-in slide-in-from-bottom-3 duration-1000 ease-in-out">
-              AI Emojis
-            </h1>
-            <EmojiCount />
-
-            <div className="max-w-md space-y-4 w-full animate-in fade-in slide-in-from-bottom-4 duration-1200 ease-in-out">
-              {children}
-            </div>
-          </div>
-
-          <Suspense>
-            <div className="animate-in fade-in slide-in-from-bottom-4 duration-1200 ease-in-out">
-              <h2 className="font-semibold text-md text-left w-full mb-3">Recents</h2>
-              <EmojiGrid />
-            </div>
-          </Suspense>
+          {children}
         </main>
         <Providers />
       </body>
     </html>
-  )
-}
-
-async function EmojiGrid() {
-  const emojis = await getEmojis()
-
-  return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 justify-items-stretch w-full">
-      {emojis.map((emoji) => (
-        <EmojiCard key={emoji.id} id={emoji.id} />
-      ))}
-    </div>
   )
 }
