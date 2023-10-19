@@ -1,6 +1,7 @@
 "use client"
 
 import { EMOJI_SIZE } from "@/lib/constants"
+import { track } from "@vercel/analytics"
 import { Download } from "lucide-react"
 import Image from "next/image"
 import { useEffect, useState } from "react"
@@ -66,6 +67,7 @@ export function ButtonCard({ id, name, src: _src, createdAt, alwaysShowDownloadB
   async function handleDownload() {
     if (!src) return
 
+    track("Download Emoji")
     setIsDownloadingEmoji(true)
     const toastId = toast.loading(`Downloading :${name}:`)
 
@@ -111,7 +113,9 @@ export function ButtonCard({ id, name, src: _src, createdAt, alwaysShowDownloadB
         </div>
       )}
 
-      <p className="font-mono text-sm truncate" title={name}>:{name}:</p>
+      <p className="font-mono text-sm truncate" title={name}>
+        :{name}:
+      </p>
 
       <button
         className={cn(

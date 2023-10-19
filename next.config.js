@@ -21,14 +21,6 @@ const nextConfig = withAxiom({
       basePath: false,
     },
   ],
-  redirects: async () => [
-    {
-      source: "/app",
-      destination: "https://apps.apple.com/us/app/ai-emojis-generator/id6468916301",
-      permanent: false,
-      basePath: false,
-    },
-  ],
 })
 
 module.exports = nextConfig

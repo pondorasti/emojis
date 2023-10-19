@@ -94,7 +94,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </Link>
 
           <div className="flex flex-row flex-nowrap gap-x-1.5 items-center">
-            <Link href={APP_STORE_URL} target="_blank" rel="noopener noreferrer">
+            <Link href="/app?referrer=website" target="_blank" rel="noopener noreferrer">
               <span className="sr-only">Download App</span>
               <Image
                 src="/_static/AppStoreBadge.svg"
