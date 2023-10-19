@@ -7,12 +7,24 @@ import { Ratelimit } from "@upstash/ratelimit"
 import { kv } from "@vercel/kv"
 import { jwtVerify } from "jose"
 import { redirect } from "next/navigation"
+import { z } from "zod"
 
-const ratelimit = new Ratelimit({
-  redis: kv,
-  // 3 requests from the same IP in 1 day
-  limiter: Ratelimit.slidingWindow(10, "1 d"),
+const jwtSchema = z.object({
+  ip: z.string(),
+  isIOS: z.boolean(),
 })
+
+const ratelimit = {
+  free: new Ratelimit({
+    redis: kv,
+    limiter: Ratelimit.slidingWindow(500, "1 d"),
+  }),
+  ios: new Ratelimit({
+    redis: kv,
+    limiter: Ratelimit.slidingWindow(3, "7 d"),
+    prefix: "ratelimit:ios",
+  }),
+}
 
 interface FormState {
   message: string
@@ -27,10 +39,9 @@ export async function createEmoji(prevFormState: FormState | undefined, formData
 
   try {
     const verified = await jwtVerify(token ?? "", new TextEncoder().encode(process.env.API_SECRET ?? ""))
-    const ip = verified.payload.ip
-    if (typeof ip !== "string") throw new Error("IP not found in token payload")
+    const { ip, isIOS } = jwtSchema.parse(verified.payload)
 
-    const { remaining } = await ratelimit.limit(ip)
+    const { remaining } = await (isIOS ? ratelimit.ios.limit(ip) : ratelimit.free.limit(ip))
     if (remaining <= 0) return { message: "Free limit reached, download mobile app for unlimited access." }
 
     const safetyRating = await replicate.classifyPrompt({ prompt })
@@ -44,10 +55,7 @@ export async function createEmoji(prevFormState: FormState | undefined, formData
     await Promise.all([prisma.emoji.create({ data }), replicate.createEmoji(data)])
   } catch (error) {
     console.error(error)
-    // @ts-expect-error
-    if (error.code === "ERR_JWS_INVALID") return { message: "Unauthorized" }
-
-    return { message: "Too many requests, please try again later." }
+    return { message: "Connection error, please refresh the page." }
   }
 
   redirect(`/p/${id}`)
