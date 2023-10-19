@@ -24,5 +24,6 @@ model Emoji {
   safetyRating    Int
   error           String?
 
+  @@index([isFlagged, originalUrl, noBackgroundUrl])
   @@fulltext([prompt])
 }
