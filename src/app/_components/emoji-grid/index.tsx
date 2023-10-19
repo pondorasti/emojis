@@ -17,6 +17,12 @@ export async function EmojiGrid({ prompt }: EmojiGridProps) {
           },
         }
       : undefined,
+    cacheStrategy: prompt
+      ? {
+          swr: 86_400, // 1 day
+          ttl: 7_200, // 2 hours
+        }
+      : undefined,
   })
 
   return (
